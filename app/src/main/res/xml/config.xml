@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/proxy_cat">
+        <EditTextPreference
+            android:key="Key"
+            android:persistent="false"
+            android:title="@string/goquiet_key" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/feature_cat">
+        <EditTextPreference
+            android:key="ServerName"
+            android:persistent="false"
+            android:title="@string/goquiet_server_name" />
+        <EditTextPreference
+            android:key="TicketTimeHint"
+            android:persistent="false"
+            android:inputType="numberDecimal"
+            android:digits="0123456789"
+            android:title="@string/goquiet_tieckt_time_hint" />
+        <ListPreference
+            android:key="Browser"
+            android:persistent="false"
+            android:title="@string/browser"
+            android:summary="%s"
+            android:entries="@array/browsers"
+            android:entryValues="@array/browsers" />
+        <CheckBoxPreference
+            android:key="FastOpen"
+            android:persistent="false"
+            android:title="Use TCP Fast Open" />
+    </PreferenceCategory>
+</PreferenceScreen>

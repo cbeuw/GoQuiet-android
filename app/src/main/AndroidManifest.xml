@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.github.shadowsocks.plugin.gq_client">
+
+    <application
+        tools:replace="android:theme"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name=".BinaryProvider"
+            android:exported="true"
+            android:authorities="com.github.shadowsocks.plugin.gq_client.BinaryProvider">
+            <intent-filter>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_NATIVE_PLUGIN" />
+                <data
+                    android:scheme="plugin"
+                    android:host="com.github.shadowsocks"
+                    android:pathPrefix="/gq-client" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.github.shadowsocks.plugin.id"
+                android:value="gq-client" />
+            <meta-data
+                android:name="com.github.shadowsocks.plugin.default_config"
+                android:value="" />
+        </provider>
+        <activity android:name=".ConfigActivity">
+            <intent-filter>
+                <action android:name="com.github.shadowsocks.plugin.ACTION_CONFIGURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="plugin"
+                    android:host="com.github.shadowsocks"
+                    android:path="/gq-client" />
+            </intent-filter>
+        </activity>
+    </application>
+
+
+</manifest>
