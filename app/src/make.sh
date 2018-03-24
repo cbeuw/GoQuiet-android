@@ -34,19 +34,19 @@ ANDROID_X86_STRIP=$ANDROID_X86_TOOLCHAIN/bin/i686-linux-android-strip
 
 try mkdir -p $DEPS $DIR/main/jniLibs/armeabi-v7a $DIR/main/jniLibs/x86 $DIR/main/jniLibs/arm64-v8a
 
-if [ ! -d "$ANDROID_ARM_TOOLCHAIN" ]; then
+if [ ! -f "$ANDROID_ARM_CC" ]; then
     echo "Make standalone toolchain for ARM arch"
     $ANDROID_NDK_HOME/build/tools/make_standalone_toolchain.py --arch arm \
         --api $MIN_API --install-dir $ANDROID_ARM_TOOLCHAIN
 fi
 
-if [ ! -d "$ANDROID_ARM64_TOOLCHAIN" ]; then
+if [ ! -f "$ANDROID_ARM64_CC" ]; then
     echo "Make standalone toolchain for ARM64 arch"
     $ANDROID_NDK_HOME/build/tools/make_standalone_toolchain.py --arch arm64 \
-        --api $MIN_API --install-dir $ANDROID_ARM64_TOOLCHAIN
+        --api 21 --install-dir $ANDROID_ARM64_TOOLCHAIN
 fi
 
-if [ ! -d "$ANDROID_X86_TOOLCHAIN" ]; then
+if [ ! -f "$ANDROID_X86_CC" ]; then
     echo "Make standalone toolchain for X86 arch"
     $ANDROID_NDK_HOME/build/tools/make_standalone_toolchain.py --arch x86 \
         --api $MIN_API --install-dir $ANDROID_X86_TOOLCHAIN
@@ -56,8 +56,7 @@ export GOPATH=$DEPS/gopath
 export GOBIN=$GOPATH/bin
 mkdir -p $GOBIN
 
-pushd $DEPS/gopath/src/github.com/cbeuw
-git clone --branch android https://github.com/cbeuw/GoQuiet
+go get -u github.com/cbeuw/GoQuiet
 go get -u github.com/cbeuw/gotfo
 pushd $GOPATH/src/github.com/cbeuw/GoQuiet/cmd/gq-client
 
