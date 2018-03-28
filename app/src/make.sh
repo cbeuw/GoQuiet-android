@@ -17,7 +17,7 @@ ANDROID_NDK_HOME="C:\Users\Qian\AppData\Local\Android\Sdk\ndk-bundle"
 [ -z "$ANDROID_NDK_HOME" ] #&& ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-MIN_API=26
+MIN_API=21
 DEPS=$(pwd)/.deps
 ANDROID_ARM_TOOLCHAIN=$DEPS/android-toolchain-${MIN_API}-arm
 ANDROID_ARM64_TOOLCHAIN=$DEPS/android-toolchain-21-arm64
