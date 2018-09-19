@@ -12,9 +12,17 @@ function try () {
 "$@" || exit -1
 }
 
-ANDROID_NDK_HOME="C:\Users\Qian\AppData\Local\Android\Sdk\ndk-bundle"
+[ -z "$ANDROID_NDK_HOME" ] && ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
 
-[ -z "$ANDROID_NDK_HOME" ] #&& ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+if [ ! -d "$ANDROID_SDK_PATH" ]; then
+ANDROID_NDK_HOME=$USERPROFILE/AppData/Local/Android/Sdk/ndk-bundle
+fi
+
+while [ ! -d "$ANDROID_NDK_HOME" ]; do
+echo "Path to ndk-bundle not found. Please enter the full path"
+read -p '' ANDROID_NDK_HOME
+done
+
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MIN_API=21
@@ -53,9 +61,8 @@ if [ ! -f "$ANDROID_X86_CC" ]; then
 fi
 
 export GOPATH=$DEPS/gopath
-export GOBIN=$GOPATH/bin
-mkdir -p $GOBIN
 
+echo "Getting GoQuiet source code"
 go get -u github.com/cbeuw/GoQuiet
 
 pushd $GOPATH/src/github.com/cbeuw/GoQuiet/cmd/gq-client

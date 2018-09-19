@@ -1,8 +1,13 @@
 # GoQuiet-android
 Shadowsocks plugin GoQuiet for Android
 
-# Build Instructions
+## Requirements
 
-1. Edit `app/src/make.sh`, set `$ANDROID_NDK_HOME` to your `ndk-bundle` path
-2. Execute `make.sh`
-3. Build with gradle (e.g. `gradlew assembleDebug`)
+- Go1.11+
+- Android NDK
+- Android SDK 26+
+
+## Build Instructions
+
+1. Execute `make.sh`
+2. Build with Android Studio
