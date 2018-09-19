@@ -1,20 +1,22 @@
 package com.github.shadowsocks.plugin.gq_client
 
 import android.os.Bundle
-import android.preference.*
+import android.preference.EditTextPreference
+import android.preference.ListPreference
+import android.preference.Preference
+import android.preference.PreferenceFragment
 import android.view.View
 import com.github.shadowsocks.plugin.PluginContract
 import com.github.shadowsocks.plugin.PluginOptions
 
 
 class ConfigFragment : PreferenceFragment() {
-    var options = PluginOptions()
+    var _options = PluginOptions()
 
     fun onInitializePluginOptions(options: PluginOptions) {
-        this.options = options
+        this._options = options
         val ary = arrayOf(Pair("Key", ""), Pair("ServerName", "bing.com"),
-                Pair("TicketTimeHint", "3600"), Pair("Browser", "chrome"),
-                Pair("FastOpen", "true"))
+                Pair("TicketTimeHint", "3600"), Pair("Browser", "chrome"))
         for (element in ary) {
             val key = element.first
             val defaultValue = element.second
@@ -27,9 +29,6 @@ class ConfigFragment : PreferenceFragment() {
                 }
                 is EditTextPreference -> {
                     pref.setText(value)
-                }
-                is CheckBoxPreference -> {
-                    pref.setChecked(value.toBoolean())
                 }
             }
             // we want all preferences to be put into the options, not only the changed ones
@@ -45,14 +44,14 @@ class ConfigFragment : PreferenceFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(PluginContract.EXTRA_OPTIONS, options.toString())
+        outState.putString(PluginContract.EXTRA_OPTIONS, _options.toString())
     }
 
     override fun onViewCreated(vidw: View, savedInstanceState: Bundle?) {
         super.onViewCreated(vidw, savedInstanceState)
         if (savedInstanceState != null) {
-            options = PluginOptions(savedInstanceState.getString(PluginContract.EXTRA_OPTIONS))
-            onInitializePluginOptions(options)
+            _options = PluginOptions(savedInstanceState.getString(PluginContract.EXTRA_OPTIONS))
+            onInitializePluginOptions(_options)
         }
         addPreferencesFromResource(R.xml.config)
     }

@@ -57,7 +57,7 @@ export GOBIN=$GOPATH/bin
 mkdir -p $GOBIN
 
 go get -u github.com/cbeuw/GoQuiet
-go get -u github.com/cbeuw/gotfo
+
 pushd $GOPATH/src/github.com/cbeuw/GoQuiet/cmd/gq-client
 
 echo "Cross compile gqclient for arm"

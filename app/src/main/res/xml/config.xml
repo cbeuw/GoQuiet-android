@@ -24,9 +24,5 @@
             android:summary="%s"
             android:entries="@array/browsers"
             android:entryValues="@array/browsers" />
-        <CheckBoxPreference
-            android:key="FastOpen"
-            android:persistent="false"
-            android:title="Use TCP Fast Open" />
     </PreferenceCategory>
 </PreferenceScreen>

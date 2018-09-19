@@ -1,15 +1,14 @@
 package com.github.shadowsocks.plugin.gq_client
 
 import android.os.Bundle
-import com.github.shadowsocks.plugin.PluginOptions
-import com.github.shadowsocks.plugin.ConfigurationActivity
 import android.support.v7.widget.Toolbar
-import android.view.MenuItem
 import android.util.Log
+import android.view.MenuItem
+import com.github.shadowsocks.plugin.ConfigurationActivity
+import com.github.shadowsocks.plugin.PluginOptions
 
 
 class ConfigActivity : ConfigurationActivity(), Toolbar.OnMenuItemClickListener {
-    private var oldOptions = PluginOptions()
 
     fun getChild(): ConfigFragment {
         return getFragmentManager().findFragmentById(R.id.content) as ConfigFragment
@@ -30,15 +29,14 @@ class ConfigActivity : ConfigurationActivity(), Toolbar.OnMenuItemClickListener 
     }
 
     override fun onInitializePluginOptions(options: PluginOptions) {
-        oldOptions = options
-        getChild().onInitializePluginOptions(options)
+        getChild().onInitializePluginOptions(PluginOptions())
     }
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         when (item.getItemId()) {
             R.id.action_apply -> {
-                Log.d("options", getChild().options.toString())
-                saveChanges(getChild().options)
+                Log.d("options", getChild()._options.toString())
+                saveChanges(getChild()._options)
                 finish()
                 return true
             }
