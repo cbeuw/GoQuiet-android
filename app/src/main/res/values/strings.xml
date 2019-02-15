@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">GoQuiet-android</string>
-    <string name="goquiet_name">GoQuiet</string>
+    <string name="app_name">GoQuiet</string>
     <string name="goquiet_server_name">Server Name</string>
     <string name="goquiet_key">Key</string>
     <string name="goquiet_tieckt_time_hint">Ticket Time Hint</string>
