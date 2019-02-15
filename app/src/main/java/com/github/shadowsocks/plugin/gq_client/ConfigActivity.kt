@@ -29,7 +29,7 @@ class ConfigActivity : ConfigurationActivity(), Toolbar.OnMenuItemClickListener 
     }
 
     override fun onInitializePluginOptions(options: PluginOptions) {
-        getChild().onInitializePluginOptions(PluginOptions())
+        getChild().onInitializePluginOptions(options)
     }
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
