@@ -11,7 +11,7 @@ import com.github.shadowsocks.plugin.PathProvider
 
 class BinaryProvider : NativePluginProvider() {
     override fun populateFiles(provider: PathProvider) {
-        provider.addPath("gq-client", "755")
+        provider.addPath("gq-client", 0b111101101)
     }
 
     override fun getExecutable(): String {
@@ -21,15 +21,10 @@ class BinaryProvider : NativePluginProvider() {
         return exec
     }
 
-    override fun openFile(uri: Uri?): ParcelFileDescriptor {
-        if (uri == null) {
-            Log.d("URI", "null")
-            throw FileNotFoundException()
-        }
+    override fun openFile(uri: Uri): ParcelFileDescriptor {
         when (uri.path) {
             "/gq-client" -> return ParcelFileDescriptor.open(File(getExecutable()), ParcelFileDescriptor.MODE_READ_ONLY)
             else -> throw FileNotFoundException()
         }
-
     }
 }
